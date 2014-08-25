@@ -172,6 +172,7 @@ mat4 sharotatey(const float angle) {
                       0,  0,      0, 1);
 }
 
+//x plane rotation
 mat4 sharotatex(const float angle) {
     float s = angle*torad;
     return mat4(1,      0,       0, 0,
@@ -180,7 +181,7 @@ mat4 sharotatex(const float angle) {
                 0,      0,       0, 1);
 }
 
-
+//translation
 mat4 shatranslate(float x, float y, float z) {
     return mat4(1.0, 0.0, 0.0, x,
                 0.0, 1.0, 0.0, y,
@@ -189,7 +190,7 @@ mat4 shatranslate(float x, float y, float z) {
                 );
 }
 
-
+//scale
 mat4 shascale(float x, float y, float z) {
     return mat4(x, 0, 0, 0,
                 0, y, 0, 0,
@@ -198,7 +199,7 @@ mat4 shascale(float x, float y, float z) {
                 );
 }
 
-
+//rotate around an axis
 mat4 sharotateav(float a, vec3 axis) {
     mat4 I = mat4(1.0);
     axis = normalize(axis);

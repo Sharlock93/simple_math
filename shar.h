@@ -12,6 +12,7 @@
 //=================================================
 //vector types
 
+//vector 2
 struct vec2 {
     GLfloat x;
     GLfloat y;
@@ -20,6 +21,14 @@ struct vec2 {
     GLfloat& operator[] (const GLuint num);
 };//end vec2
 
+GLfloat& vec2::operator[] (const GLuint num) {
+    switch(num) {
+        case 0: return x; break;
+        case 1: return y; break;
+    }
+}//end vec2 op []
+
+// vector 3
 struct vec3 {
     GLfloat x;
     GLfloat y;
@@ -29,6 +38,15 @@ struct vec3 {
     GLfloat& operator[] (const GLuint num);
 };//end vec3
 
+GLfloat& vec3::operator[] (const GLuint num) {
+    switch(num) {
+        case 0: return x;
+        case 1: return y;
+        case 2: return z;
+    }
+}//end vec3 op []
+
+//vector 4
 struct vec4 {
     GLfloat x;
     GLfloat y;
@@ -40,21 +58,6 @@ struct vec4 {
     GLfloat& operator[] (const GLuint num);
 };//end vec4
 
-GLfloat& vec2::operator[] (const GLuint num) {
-    switch(num) {
-        case 0: return x; break;
-        case 1: return y; break;
-    }
-}//end vec2 op []
-
-GLfloat& vec3::operator[] (const GLuint num) {
-    switch(num) {
-        case 0: return x;
-        case 1: return y;
-        case 2: return z;
-    }
-}//end vec3 op []
-
 GLfloat& vec4::operator[] (const GLuint num) {
     switch(num) {
         case 0: return x;
@@ -63,7 +66,6 @@ GLfloat& vec4::operator[] (const GLuint num) {
         case 3: return w;
     }
 }//end vec4 op []
-
 //=======================================================================
 
 //=======================================================================
@@ -112,6 +114,18 @@ inline vec3 operator+(GLfloat num, vec3 left) {
     return vec3(left.x + num, left.y + num, left.z + num);
 }//+
 
+inline vec3 operator*(double scalar, vec3 v) {
+    return vec3(scalar*v.x, scalar*v.y, scalar*v.z);
+}//*
+
+inline vec3 operator*(vec3 v, double scalar) {
+    return vec3(scalar*v.x, scalar*v.y, scalar*v.z);
+}//*
+
+inline vec3 operator-(vec3 a, vec3 b) {
+    return vec3(a.x-b.x, a.y-b.y, a.z-b.z);
+}//-
+
 //div
 inline vec3 operator/(vec3 left, vec3 right) {
     return vec3(left.x/right.x, left.y/right.y, left.z/right.z);
@@ -153,7 +167,31 @@ inline vec3 normalize(vec3 vin) {
 inline vec3 cross(vec3 vin, vec3 vin2) {
     return vec3( vin.y*vin2.z - vin.z*vin2.y, //x
                 -vin.x*vin2.z + vin.z*vin2.x, //y
-                 vin.x*vin2.y - vin.y*vin2.x);
+                 vin.x*vin2.y - vin.y*vin2.x) //z
+                 ;
+}
+
+inline double dot(vec3 vin, vec3 vin2) {
+    return (vin.x*vin2.x + vin.y*vin2.y + vin.z*vin2.z);
+}
+
+//return cos(theta) between the two vectors
+inline double getcosa(vec3 vin, vec3 vin2) {
+    return dot(vin, vin2)/(length(vin)*length(vin2));
+}
+
+//project a into b
+inline double sproj(vec3 a, vec3 b) {
+    return dot(a, b)/length(b);
+}
+
+//project a into b in vector form
+inline vec3 vproj(vec3 a, vec3 b) {
+    return (dot(a, b)/dot(b, b))*b;
+}
+
+inline vec3 vrejc(vec3 a, vec3 b) {
+    return a - vproj(a, b);
 }
 
 //======================================================================
@@ -171,6 +209,26 @@ inline vec4 operator+(vec4 left, GLfloat num) {
 inline vec4 operator+(GLfloat num, vec4 left) {
     return vec4(left.x + num, left.y + num, left.z + num, left.w + num);
 }// +
+
+inline vec4 operator-(vec4 left, vec4 right) {
+    return vec4(left.x - right.x, left.y - right.y, left.z - right.z, 1);
+}// -
+
+inline vec4 operator-(vec4 left, GLfloat num) {
+    return vec4(left.x - num, left.y - num, left.z - num, left.w);
+}// -
+
+inline vec4 operator-(GLfloat num, vec4 left) {
+    return vec4(left.x - num, left.y - num, left.z - num, left.w);
+}// +
+
+inline vec4 operator*(double scalar, vec4 v) {
+    return vec4(scalar*v.x, scalar*v.y, scalar*v.z, v.w);
+}//*
+
+inline vec4 operator*(vec4 v, double scalar) {
+    return vec4(scalar*v.x, scalar*v.y, scalar*v.z, v.w);
+}//*
 
 inline vec4 operator/(vec4 left, GLfloat num) {
     return vec4(left.x / num, left.y / num, left.z / num, left.w / num);
@@ -198,6 +256,30 @@ inline vec4 cross(vec4 vin, vec4 vin2) {
                 -vin.x*vin2.z + vin.z*vin2.x, //y
                  vin.x*vin2.y - vin.y*vin2.x, //z
                  1 );                         //w
+}
+
+inline double dot(vec4 vin, vec4 vin2) {
+    return (vin.x*vin2.x + vin.y*vin2.y + vin.z*vin2.z);
+}
+
+//return cos(theta) between the two vectors
+inline double getcosa(vec4 vin, vec4 vin2) {
+    return dot(vin, vin2)/(length(vin)*length(vin2));
+}
+
+//project a into b
+inline double sproj(vec4 a, vec4 b) {
+    return dot(a, b)/length(b);
+}
+
+//project a into b in vector form
+inline vec4 vproj(vec4 a, vec4 b) {
+    return (dot(a, b)/dot(b, b))*b;
+}
+
+
+inline vec4 vrejc(vec4 a, vec4 b) {
+    return a - vproj(a, b);
 }
 
 //======================================================================
