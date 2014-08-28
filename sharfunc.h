@@ -222,4 +222,28 @@ mat4 sharotateav(float a, vec3 axis) {
     return (cos(radians)*I + (1 - cos(radians))*aat + dual_axis*sin(radians));
 }
 
+
+
+//requires fixing
+//sharLookat
+mat4 shalookat(vec4 eye, vec4 at, vec4 up) {
+    vec4 n = normalize(at-eye); //normal to the view plan z
+    vec4 u = normalize(cross(up, n)); // x
+    vec4 v = cross(n, u); //y
+    n.w = u.w = v.w = 0;
+    // cout << v << endl << n << endl << u << endl;
+    vec4 e = eye;
+    // mat4 result(u.x ,  v.x,  n.x, 0,
+    //             u.y ,  v.y,  n.y, 0,
+    //             u.z ,  v.z,  n.z, 0,
+    //                0,    0,    0, 1);
+
+    mat4 result(u, v, n, vec4(0, 0, 0, 1));
+
+
+
+    result[3][3] = 1;
+    return shatranslate(-e.x, -e.y, -e.z)*result;
+}
+
 #endif

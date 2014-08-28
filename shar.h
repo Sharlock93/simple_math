@@ -5,7 +5,7 @@
 #include <cmath>
 #include <iomanip>
 #ifndef __glew_h__
-#include <GL\glew.h>
+#include <GL\glew.h>zz
 #endif
 
 
@@ -213,6 +213,11 @@ inline vec4 operator+(GLfloat num, vec4 left) {
 inline vec4 operator-(vec4 left, vec4 right) {
     return vec4(left.x - right.x, left.y - right.y, left.z - right.z, 1);
 }// -
+
+inline vec4 operator-(vec4 left) {
+    return vec4(-left.x, -left.y, -left.z, -left.w);
+}// -
+
 
 inline vec4 operator-(vec4 left, GLfloat num) {
     return vec4(left.x - num, left.y - num, left.z - num, left.w);
@@ -772,25 +777,22 @@ std::ostream& operator << (std::ostream& os, const mat3x3 m) {
 
 
 std::ostream& operator << (std::ostream& os, const mat4x4 m) {
-    os << std::right  << std::setw(3) << m.x.x << " ";
-    os << std::right << std::setw(3) << m.x.y << " ";
-    os << std::right << std::setw(3) << m.x.z << " ";
-    os << std::right << std::setw(3) << m.x.w << std::endl;
-
-    os << std::right  << std::setw(3) << m.y.x << " ";
-    os << std::right << std::setw(3) << m.y.y << " ";
-    os << std::right << std::setw(3) << m.y.z << " ";
-    os << std::right << std::setw(3) << m.y.w << std::endl;
-
-    os << std::right  << std::setw(3) << m.z.x << " ";
-    os << std::right << std::setw(3) << m.z.y << " ";
-    os << std::right << std::setw(3) << m.z.z << " ";
-    os << std::right << std::setw(3) << m.z.w << std::endl;
-
-    os << std::right  << std::setw(3) << m.w.x << " ";
-    os << std::right << std::setw(3) << m.w.y << " ";
-    os << std::right << std::setw(3) << m.w.z << " ";
-    os << std::right << std::setw(3) << m.w.w;
+    os << std::right << std::setfill('0') << std::setprecision(2)  << std::setw(3) << m.x.x << " ";
+    os << std::right << std::setfill('0') << std::setprecision(2)  << std::setw(3) << m.x.y << " ";
+    os << std::right << std::setfill('0') << std::setprecision(2)  << std::setw(3) << m.x.z << " ";
+    os << std::right << std::setfill('0') << std::setprecision(2)  << std::setw(3) << m.x.w << std::endl;
+    os << std::right << std::setfill('0') << std::setprecision(2)  << std::setw(3) << m.y.x << " ";
+    os << std::right << std::setfill('0') << std::setprecision(2) << std::setw(3) << m.y.y << " ";
+    os << std::right << std::setfill('0') << std::setprecision(2) << std::setw(3) << m.y.z << " ";
+    os << std::right << std::setfill('0') << std::setprecision(2) << std::setw(3) << m.y.w << std::endl;
+    os << std::right << std::setfill('0') << std::setprecision(2)  << std::setw(3) << m.z.x << " ";
+    os << std::right << std::setfill('0') << std::setprecision(2) << std::setw(3) << m.z.y << " ";
+    os << std::right << std::setfill('0') << std::setprecision(2) << std::setw(3) << m.z.z << " ";
+    os << std::right << std::setfill('0') << std::setprecision(2) << std::setw(3) << m.z.w << std::endl;
+    os << std::right << std::setfill('0') << std::setprecision(2)  << std::setw(3) << m.w.x << " ";
+    os << std::right << std::setfill('0') << std::setprecision(2) << std::setw(3) << m.w.y << " ";
+    os << std::right << std::setfill('0') << std::setprecision(2) << std::setw(3) << m.w.z << " ";
+    os << std::right << std::setfill('0') << std::setprecision(2) << std::setw(3) << m.w.w;
 
     return os;
 }
