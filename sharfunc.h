@@ -9,6 +9,7 @@
 #include <Shar\shar.h>
 #endif
 #include <random>
+#include <math.h>
 
 const float torad = M_PI/180.0;
 
@@ -190,6 +191,22 @@ mat4 shatranslate(float x, float y, float z) {
                 );
 }
 
+mat4 shatranslate(vec3 v) {
+    return mat4(1.0, 0.0, 0.0, v.x,
+                0.0, 1.0, 0.0, v.y,
+                0.0, 0.0, 1.0, v.z,
+                0.0, 0.0, 0.0, 1.0
+                );
+}
+
+mat4 shatranslate(vec4 v) {
+    return mat4(1.0, 0.0, 0.0, v.x,
+                0.0, 1.0, 0.0, v.y,
+                0.0, 0.0, 1.0, v.z,
+                0.0, 0.0, 0.0, 1.0
+                );
+}
+
 //scale
 mat4 shascale(float x, float y, float z) {
     return mat4(x, 0, 0, 0,
@@ -217,33 +234,46 @@ mat4 sharotateav(float a, vec3 axis) {
         -axis.z,     0.0,  axis.x, 0,
          axis.y, -axis.x,  0.0   , 0,
               0,       0,       0, 1
-        );//the dual martix of the axis vector
+        );//the dual matrix of the axis vector
 
     return (cos(radians)*I + (1 - cos(radians))*aat + dual_axis*sin(radians));
 }
 
+mat4 shaortho(GLfloat left, GLfloat right, GLfloat top, GLfloat bottom, GLfloat pnear, GLfloat pfar) {
+    return mat4(2/(left-right),              0,              0, -(right+left)/(right-left),
+                             0, 2/(top-bottom),               0, -(top  +bottom)/(top -bottom),
+                             0,              0,-2/(pfar-pnear), -(pfar +pnear)/(pnear-pfar),
+                             0,              0,              0, 1 );
+}
 
 
-//requires fixing
-//sharLookat
+//oblique proj
+mat4 shaoblique(GLfloat theta, GLfloat phi) {
+    return mat4(1, 0, 1/tan(theta*torad), 0,
+                0, 1, 1/tan(phi*torad), 0,
+                0, 0,                  1, 0,
+                0, 0,                  0, 1);
+}
+
 mat4 shalookat(vec4 eye, vec4 at, vec4 up) {
-    vec4 n = normalize(at-eye); //normal to the view plan z
-    vec4 u = normalize(cross(up, n)); // x
-    vec4 v = cross(n, u); //y
-    n.w = u.w = v.w = 0;
-    // cout << v << endl << n << endl << u << endl;
-    vec4 e = eye;
-    // mat4 result(u.x ,  v.x,  n.x, 0,
-    //             u.y ,  v.y,  n.y, 0,
-    //             u.z ,  v.z,  n.z, 0,
-    //                0,    0,    0, 1);
+    vec4 n = normalize(eye-at);//this is the positive z direction
+    vec4 u = normalize(cross(up, n)); //positive x direction
+    vec4 v = cross(n, u); //positive y direction
+    n.w = v.w = u.w = 0;
 
     mat4 result(u, v, n, vec4(0, 0, 0, 1));
 
+    // cout << result << endl;
+
+    return result;
+}
 
 
-    result[3][3] = 1;
-    return shatranslate(-e.x, -e.y, -e.z)*result;
+mat4 tests(GLfloat r, GLfloat t, GLfloat n, GLfloat f) {
+    return mat4(n/r,   0,            0, 0,
+                  0, n/t,            0, 0,
+                  0,   0, -(f+n)/(f-n), -2*f*n/(f-n),
+                  0,   0,           -1, 0 );
 }
 
 #endif

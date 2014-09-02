@@ -1,3 +1,12 @@
+//law of the Graphics universe...
+//scale
+//rotate
+//translate
+//translate*rotate*scale <<---quiet fucked up
+
+
+//v' = P*V*M*v << first model matrix, then view, then projections
+
 #ifndef _SHAR_
 #define _SHAR_
 
@@ -5,7 +14,7 @@
 #include <cmath>
 #include <iomanip>
 #ifndef __glew_h__
-#include <GL\glew.h>zz
+#include <GL\glew.h>
 #endif
 
 
