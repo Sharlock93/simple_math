@@ -265,15 +265,25 @@ mat4 shalookat(vec4 eye, vec4 at, vec4 up) {
 
     // cout << result << endl;
 
-    return result;
+    return result*shatranslate(-eye);
 }
 
+mat4 shafrustum(GLfloat lleft, GLfloat lright, GLfloat top, GLfloat bottom, GLfloat near, GLfloat far) {
+    return mat4(2*near/(lright-lleft),                   0,  (lright+lleft)/(lright-lleft),                      0,
+                                    0, 2*near/(top-bottom),      (top+bottom)/(top-bottom),                      0,
+                                    0,                   0,         -(far+near)/(far-near), -2*far*near/(far-near),
+                                    0,                   0,                             -1,                      0 );
+}
 
-mat4 tests(GLfloat r, GLfloat t, GLfloat n, GLfloat f) {
-    return mat4(n/r,   0,            0, 0,
-                  0, n/t,            0, 0,
-                  0,   0, -(f+n)/(f-n), -2*f*n/(f-n),
-                  0,   0,           -1, 0 );
+mat4 shaperspective(GLfloat fov, GLfloat aspect, GLfloat near, GLfloat far) {
+
+    GLfloat top = tan((fov/2)*torad)*near;
+    GLfloat right = top*aspect;
+
+    return mat4(near/right,        0,  0, 0,
+                         0, near/top,  0, 0,
+                         0,        0,  -(far+near)/(far-near), -2*far*near/(far-near),
+                         0,        0, -1, 0 );
 }
 
 #endif
