@@ -24,6 +24,7 @@ char* shareadfile(const char *filename) {
     } else {
         fseek(tempfile, 0, SEEK_END);
         long size_of_file = ftell(tempfile);
+        cout << size_of_file << endl;
         char *ret = new char[size_of_file+1];
         rewind(tempfile);
         fread(ret, 1, size_of_file, tempfile);

@@ -16,7 +16,7 @@ const float torad = M_PI/180.0;
 //introduce some randomness
 std::random_device randev;
 std::mt19937 rantwist(randev());
-std::uniform_real_distribution<float> uniformdist(0, 0.03);
+std::uniform_real_distribution<float> uniformdist(0, 10);
 
 
 typedef vec2   point2;
@@ -217,7 +217,7 @@ mat4 shascale(float x, float y, float z) {
 }
 
 //rotate around an axis
-mat4 sharotateav(float a, vec3 axis) {
+mat4 sharotateav(float a, vec4 axis) {
     mat4 I = mat4(1.0);
     axis = normalize(axis);
     mat4 aat = mat4(
