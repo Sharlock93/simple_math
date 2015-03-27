@@ -102,7 +102,7 @@ GLuint shamkprogram(GLuint vertexShader, GLuint fragmentShader) {
     if(compiletest != GL_TRUE) {
         printf("Error Linking the program.\n");
 
-        GLint log_size;
+        GLint log_size = 0;
         glGetProgramiv(program, GL_INFO_LOG_LENGTH, &log_size);
 
         GLchar *log_info = new GLchar[log_size];
@@ -126,7 +126,7 @@ GLFWwindow* shainitwindow(int height, int width, char *title) {
         cout << "glfwInit() error" << endl;
     }
 
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);

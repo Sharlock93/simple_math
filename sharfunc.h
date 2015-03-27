@@ -73,7 +73,8 @@ void shatrianglediv(point2 *buffer, GLint &current_index, point2 a, point2 b, po
     }
 }
 
-void shatertradiv(point3 *buffer, point3 *color_buffer, point3 base_color[4], GLint &cur_index, GLint &color_index, point3 a, point3 b,point3 c, point3 d, GLint num, GLboolean rdm = GL_FALSE) {
+void shatertradiv(point3 *buffer, point3 *color_buffer, point3 base_color[4],
+                  GLint &cur_index, GLint &color_index, point3 a, point3 b,point3 c, point3 d, GLint num, GLboolean rdm = GL_FALSE) {
     if(num > 0) {
         point3 ab, ac, ad, bc, bd, cd;
         ab = (a + b)/2;
@@ -175,6 +176,9 @@ mat4 sharotatey(const float angle) {
 
 //x plane rotation
 mat4 sharotatex(const float angle) {
+
+    if(angle == 0)
+        return mat4(1);
     float s = angle*torad;
     return mat4(1,      0,       0, 0,
                 0, cos(s), -sin(s), 0,
