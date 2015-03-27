@@ -12,7 +12,8 @@
 #define BUFFER_OFFSET(byte) ((void*) (byte))
 #include <ostream>
 #include <iomanip>
-
+#include <cmath>
+const float torad = M_PI / 180.0;
 
 //=================================================
 //vector types
@@ -267,5 +268,10 @@ inline mat4x4 operator + (const mat4x4 m     , const mat4x4 m2);
 inline mat4x4 transpose(mat4x4 mat);
 inline float determinate(mat4x4 mat);
 inline mat4x4 inverse(mat4x4 mat);
+
+typedef vec2   point2;
+typedef vec3   point3;
+typedef vec4   point4;
+typedef mat4x4 mat4;
 
 #endif

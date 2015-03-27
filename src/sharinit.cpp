@@ -1,5 +1,4 @@
-#ifndef _SHA_DER_
-#define _SHA_DER_
+#include "../headers/sharinit.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -11,6 +10,7 @@ using namespace std;
 #ifndef __glew_h__
 #include <GL\glew.h>
 #endif
+#include <GLFW\glfw3.h>
 
 //====================================================================================
 //read a file into a buffer and return it for making a shader
@@ -145,11 +145,3 @@ GLFWwindow* shainitwindow(int height, int width, char *title) {
 
     return window;
 }
-
-// int main() {
-//     char *test = shareadfile("test.txt");
-//     printf("%s", test);
-//     return 0;
-// }
-
-#endif

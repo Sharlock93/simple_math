@@ -1,52 +1,7 @@
-#ifndef TURTLEGRAPH_H
-#define TURTLEGRAPH_H
-//include files
-#include <Shar\shar.h>
-#include <cmath>
-#include <Shar\sharinit.h>
-
-//typedefs
-typedef vec2 point2;
-enum pen_state {PEN_UP, PEN_DOWN};
-
-//const values
-// const float torad = M_PI/180.0; //convert degree to rad
-const GLchar *vertexSource =
-"#version 430 core \n"
-"layout (location = 0) in vec4 vpos;" //vpos is at 0
-"out vec4 fcolor;"
-"void main() { gl_Position = vpos; fcolor = vec4((1+vpos.xyz)/2, 1.0); }";
-
-const GLchar *fragmentSource =
-"#version 430 core \n"
-"in vec4 fcolor;"
-"out vec4 color;"
-"void main() { color = fcolor; }";
-
-
-//global variables
-const int turtle_points = 363;
-point2 turtle[turtle_points];//10 points for the shape, 1 for the direction pointer
-point2 points[10000]; //amount of points allowed to be drawn
-GLuint vpos = 0; //vpos for the vertex shader
-
-int pointsdraw = 0;  //points drawn so far
-float turtle_angle = 0; //initial angle of the turtle
-float r = 0.05; //radius of circle
-float r2 = r+r; //radius of the point around the circle
-int turtle_brush = turtle_points-1;
-pen_state pstate = PEN_UP;
-
-float speed = 1;
-
-//opengl buffers & vao;
-GLuint vao;
-GLuint vbo;
-
-//func prototype
-void draw_point();
-
-//functions
+#include "../headers/shaturtlegraph.h"
+#include "../headers/sharinit.h"
+#include "../../GL/glew.h"
+#include "../../GLFW/glfw3.h"
 
 void initBuffers() {
     glGenVertexArrays(1, &vao);
@@ -74,7 +29,7 @@ void initBuffers() {
 }
 
 //initiate the turtle with the center at (x, y), orientation of turtle_angle
-void turtleInit(float x, float y, float angle = turtle_angle) {
+void turtleInit(float x, float y, float angle) {
     float temp = 0; //angle
     for(int i = 0; i < turtle_points-3; ++i) {
         turtle[i].x = r*cos(temp*torad)+x;
@@ -126,7 +81,7 @@ void move_turtle(float distance) {
     glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(turtle), turtle);
 }
 
-void pen_state(pen_state state) {
+void change_pen_state(pen_state state) {
     pstate = state;
 }
 
@@ -179,5 +134,3 @@ void draw_point() {
 void reset_angle_turtle() {
     turtle_angle = 0;
 }
-
-#endif // TURTLEGRAPH_H

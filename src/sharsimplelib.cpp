@@ -1,17 +1,6 @@
-#ifndef _SHAR_SIMP_LIB_
-#define _SHAR_SIMP_LIB_
-
-
-const GLint SIZE_OF_VIRTUAL_BUFF = 1000; // 512 for x and 512 for y
-GLfloat v_buff_x[SIZE_OF_VIRTUAL_BUFF];
-GLfloat v_buff_y[SIZE_OF_VIRTUAL_BUFF];
-GLint   V_BUFF_INDEX = 0;
-GLboolean shSendData = GL_TRUE;
-GLint windoWidth = 0;
-GLint windowHeight = 0;
-
-typedef GLFWwindow shWindow;
-
+#include "../headers/sharsimplelib.h"
+#include <GL\glew.h>
+#include <GLFW\glfw3.h>
 
 void shWritePixel(GLfloat x, GLfloat y) {
     v_buff_x[V_BUFF_INDEX] = (2*x)/windoWidth - 1;
@@ -100,4 +89,4 @@ void shInit() {
     glUseProgram(program);
 }
 
-#endif
+
