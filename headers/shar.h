@@ -27,12 +27,12 @@ struct vec2 {
     float& operator[] (const unsigned int num);
 };//end vec2
 
-inline vec2 operator+(vec2 left, vec2 right);
-inline vec2 operator+(vec2 left, float num);
-inline vec2 operator+(float num, vec2 left);
-inline vec2 operator/(vec2 left, vec2 right);
-inline vec2 operator/(vec2 left, float num);
-inline vec2 operator/(float num, vec2 left);
+vec2 operator+(vec2 left, vec2 right);
+vec2 operator+(vec2 left, float num);
+vec2 operator+(float num, vec2 left);
+vec2 operator/(vec2 left, vec2 right);
+vec2 operator/(vec2 left, float num);
+vec2 operator/(float num, vec2 left);
 std::ostream& operator << (std::ostream& os, const vec2 vin);
 
 
@@ -46,27 +46,27 @@ struct vec3 {
     float& operator[] (const unsigned int num);
 };//end vec3
 
-inline vec3 operator+(vec3 left, vec3 right);
-inline vec3 operator+(vec3 left, float num);
-inline vec3 operator+(float num, vec3 left);
-inline vec3 operator*(double scalar, vec3 v);
-inline vec3 operator*(vec3 v, double scalar);
-inline vec3 operator-(vec3 a, vec3 b);
-inline vec3 operator/(vec3 left, vec3 right);
-inline vec3 operator/(float num, vec3 left);
-inline vec3 operator/(vec3 left, float num);
-inline vec3 operator/=(vec3 left, float num);
-inline bool operator < (vec3 left, vec3 right);
-inline bool operator==(vec3 left, vec3 right);
-inline double length(vec3 in);
-inline vec3 normalize(vec3 vin);
-inline vec3 cross(vec3 vin, vec3 vin2);
-inline double dot(vec3 vin, vec3 vin2);
-inline double getcosa(vec3 vin, vec3 vin2);
-inline double getangle(vec3 vin, vec3 vin2);
-inline double sproj(vec3 a, vec3 b);
-inline vec3 vproj(vec3 a, vec3 b);
-inline vec3 vrejc(vec3 a, vec3 b);
+vec3 operator+(vec3 left, vec3 right);
+vec3 operator+(vec3 left, float num);
+vec3 operator+(float num, vec3 left);
+vec3 operator*(double scalar, vec3 v);
+vec3 operator*(vec3 v, double scalar);
+vec3 operator-(vec3 a, vec3 b);
+vec3 operator/(vec3 left, vec3 right);
+vec3 operator/(float num, vec3 left);
+vec3 operator/(vec3 left, float num);
+vec3 operator/=(vec3 left, float num);
+bool operator < (vec3 left, vec3 right);
+bool operator==(vec3 left, vec3 right);
+double length(vec3 in);
+vec3 normalize(vec3 vin);
+vec3 cross(vec3 vin, vec3 vin2);
+double dot(vec3 vin, vec3 vin2);
+double getcosa(vec3 vin, vec3 vin2);
+double getangle(vec3 vin, vec3 vin2);
+double sproj(vec3 a, vec3 b);
+vec3 vproj(vec3 a, vec3 b);
+vec3 vrejc(vec3 a, vec3 b);
 std::ostream& operator << (std::ostream& os, const vec3 vin);
 
 
@@ -82,27 +82,27 @@ struct vec4 {
     float& operator[] (const unsigned int num);
 };//end vec4
 
-inline vec4 operator+(vec4 left, vec4 right);
-inline vec4 operator+(vec4 left, float num);
-inline vec4 operator+(float num, vec4 left);
-inline vec4 operator-(vec4 left, vec4 right);
-inline vec4 operator-(vec4 left);
-inline vec4 operator-(vec4 left, float num);
-inline vec4 operator-(float num, vec4 left);
-inline vec4 operator*(double scalar, vec4 v);
-inline vec4 operator*(vec4 v, double scalar);
-inline vec4 operator/(vec4 left, float num);
-inline vec4 operator/(float num, vec4 left);
-inline vec4 operator/(vec4 left, vec4 right);
-inline double length(vec4 in);
-inline vec4 normalize(vec4 vin);
-inline vec4 cross(vec4 vin, vec4 vin2);
-inline double dot(vec4 vin, vec4 vin2);
-inline double getcosa(vec4 vin, vec4 vin2);
-inline double getangle(vec4 vin, vec4 vin2);
-inline double sproj(vec4 a, vec4 b);
-inline vec4 vproj(vec4 a, vec4 b);
-inline vec4 vrejc(vec4 a, vec4 b);
+vec4 operator+(vec4 left, vec4 right);
+vec4 operator+(vec4 left, float num);
+vec4 operator+(float num, vec4 left);
+vec4 operator-(vec4 left, vec4 right);
+vec4 operator-(vec4 left);
+vec4 operator-(vec4 left, float num);
+vec4 operator-(float num, vec4 left);
+vec4 operator*(double scalar, vec4 v);
+vec4 operator*(vec4 v, double scalar);
+vec4 operator/(vec4 left, float num);
+vec4 operator/(float num, vec4 left);
+vec4 operator/(vec4 left, vec4 right);
+double length(vec4 in);
+vec4 normalize(vec4 vin);
+vec4 cross(vec4 vin, vec4 vin2);
+double dot(vec4 vin, vec4 vin2);
+double getcosa(vec4 vin, vec4 vin2);
+double getangle(vec4 vin, vec4 vin2);
+double sproj(vec4 a, vec4 b);
+vec4 vproj(vec4 a, vec4 b);
+vec4 vrejc(vec4 a, vec4 b);
 std::ostream& operator << (std::ostream& os, const vec4 vin);
 
 //======================================================================
@@ -133,13 +133,13 @@ struct mat2x2 {
 }; //struct for 2x2
 
 std::ostream& operator << (std::ostream& os, const mat2x2 m);
-inline vec2 operator * (const mat2x2 m, const vec2 vin);
-inline vec2 operator * (const vec2 vin, const mat2x2 m);
-inline mat2x2 operator * (const mat2x2 m, const mat2x2 m2);
-inline mat2x2 operator/ (const mat2x2 matrix_in, float divisor);
-inline mat2x2 transpose(mat2x2 matrix_in);
-inline float determinate(mat2x2 matrix_in);
-inline mat2x2 inverse(mat2x2 m_in);
+vec2 operator * (const mat2x2 m, const vec2 vin);
+vec2 operator * (const vec2 vin, const mat2x2 m);
+mat2x2 operator * (const mat2x2 m, const mat2x2 m2);
+mat2x2 operator/ (const mat2x2 matrix_in, float divisor);
+mat2x2 transpose(mat2x2 matrix_in);
+float determinate(mat2x2 matrix_in);
+mat2x2 inverse(mat2x2 m_in);
 
 //row major 3x3
 struct mat3x3 {
@@ -186,13 +186,13 @@ struct mat3x3 {
 }; //struct for 3x3
 
 std::ostream& operator << (std::ostream& os, const mat3x3 m);
-inline vec3 operator * (const vec3 vin, const mat3x3 m);
-inline mat3x3 operator * (const mat3x3 m, const mat3x3 m2);
-inline vec3 operator * (const mat3x3 m, const vec3 vin);
-inline mat3x3 operator/ (const mat3x3 mat, float divisor);
-inline mat3x3 transpose(mat3x3 mat);
-inline float determinate(mat3x3 mat);
-inline mat3x3 inverse(mat3x3 mat);
+vec3 operator * (const vec3 vin, const mat3x3 m);
+mat3x3 operator * (const mat3x3 m, const mat3x3 m2);
+vec3 operator * (const mat3x3 m, const vec3 vin);
+mat3x3 operator/ (const mat3x3 mat, float divisor);
+mat3x3 transpose(mat3x3 mat);
+float determinate(mat3x3 mat);
+mat3x3 inverse(mat3x3 mat);
 
 //mat 4x4
 struct mat4x4 {
@@ -250,24 +250,24 @@ struct mat4x4 {
            vec4 win);
 
     vec4& operator[] (const int index);
-    inline operator const float*();
+    operator const float*();
 };//mat4x4
 
 
 
 std::ostream& operator << (std::ostream& os, const mat4x4 m);
-inline vec4 operator * (const mat4x4 m, const vec4 vin);
-inline vec4 operator * (const vec4 vin, const mat4x4 m);
+vec4 operator * (const mat4x4 m, const vec4 vin);
+vec4 operator * (const vec4 vin, const mat4x4 m);
 
-inline mat4x4 operator / (const mat4x4 mat   , float divisor);
-inline mat4x4 operator * (const float  scalar, const mat4x4 m);
-inline mat4x4 operator * (const mat4x4 m     , const float scalar);
-inline mat4x4 operator * (const mat4x4 m     , const mat4x4 m2);
-inline mat4x4 operator + (const mat4x4 m     , const mat4x4 m2);
+mat4x4 operator / (const mat4x4 mat   , float divisor);
+mat4x4 operator * (const float  scalar, const mat4x4 m);
+mat4x4 operator * (const mat4x4 m     , const float scalar);
+mat4x4 operator * (const mat4x4 m     , const mat4x4 m2);
+mat4x4 operator + (const mat4x4 m     , const mat4x4 m2);
 
-inline mat4x4 transpose(mat4x4 mat);
-inline float determinate(mat4x4 mat);
-inline mat4x4 inverse(mat4x4 mat);
+mat4x4 transpose(mat4x4 mat);
+float determinate(mat4x4 mat);
+mat4x4 inverse(mat4x4 mat);
 
 typedef vec2   point2;
 typedef vec3   point3;

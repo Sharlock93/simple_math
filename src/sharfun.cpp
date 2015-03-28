@@ -2,7 +2,7 @@
 #define _SHAR_FUNC_
 
 #include "../headers/sharfun.h"
-#include "../headers/shar.h"
+// #include "../headers/shar.h"
 #include <random>
 #include <math.h>
 

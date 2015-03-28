@@ -1,4 +1,4 @@
-##ifndef SHARFUN_H
+#ifndef SHARFUN_H
 #define SHARFUN_H
 
 #include "shar.h"

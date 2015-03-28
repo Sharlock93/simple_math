@@ -1,4 +1,4 @@
-#include "shar2.h"
+#include "..\headers\shar.h"
 #include <cmath>
 #include <iomanip>
 #include <ostream>
@@ -58,128 +58,128 @@ float& vec4::operator[] (const unsigned int num) {
 //vec2 operators
 
 //addition
-inline vec2 operator+(vec2 left, vec2 right) {
+vec2 operator+(vec2 left, vec2 right) {
     return vec2(left.x + right.x, left.y + right.y);
 }// +
 
-inline vec2 operator+(vec2 left, float num) {
+vec2 operator+(vec2 left, float num) {
     return vec2(left.x + num, left.y + num);
 }// +
 
-inline vec2 operator+(float num, vec2 left) {
+vec2 operator+(float num, vec2 left) {
     return operator+(left, num);
 }// +
 
 //division
-inline vec2 operator/(vec2 left, vec2 right) {
+vec2 operator/(vec2 left, vec2 right) {
     return vec2(left.x / right.x, left.y / right.y);
 }// /
 
-inline vec2 operator/(vec2 left, float num) {
+vec2 operator/(vec2 left, float num) {
     return vec2(left.x / num, left.y / num);
 }// /
 
-inline vec2 operator/(float num, vec2 left) {
+vec2 operator/(float num, vec2 left) {
     return vec2(num / left.x, num / left.y);
 }// /
 //======================================================================
 
 //======================================================================
 //vec3 op
-inline vec3 operator+(vec3 left, vec3 right) {
+vec3 operator+(vec3 left, vec3 right) {
     return vec3(left.x + right.x, left.y + right.y, left.z + right.z);
 }//+
 
-inline vec3 operator+(vec3 left, float num) {
+vec3 operator+(vec3 left, float num) {
     return vec3(left.x + num, left.y + num, left.z + num);
 }//+
 
-inline vec3 operator+(float num, vec3 left) {
+vec3 operator+(float num, vec3 left) {
     return vec3(left.x + num, left.y + num, left.z + num);
 }//+
 
-inline vec3 operator*(double scalar, vec3 v) {
+vec3 operator*(double scalar, vec3 v) {
     return vec3(scalar * v.x, scalar * v.y, scalar * v.z);
 }//*
 
-inline vec3 operator*(vec3 v, double scalar) {
+vec3 operator*(vec3 v, double scalar) {
     return vec3(scalar * v.x, scalar * v.y, scalar * v.z);
 }//*
 
-inline vec3 operator-(vec3 a, vec3 b) {
+vec3 operator-(vec3 a, vec3 b) {
     return vec3(a.x - b.x, a.y - b.y, a.z - b.z);
 }//-
 
 //div
-inline vec3 operator/(vec3 left, vec3 right) {
+vec3 operator/(vec3 left, vec3 right) {
     return vec3(left.x / right.x, left.y / right.y, left.z / right.z);
 }// /
 
-inline vec3 operator/(float num, vec3 left) {
+vec3 operator/(float num, vec3 left) {
     return vec3(num / left.x, num / left.y, num / left.z);
 }// /
 
-inline vec3 operator/(vec3 left, float num) {
+vec3 operator/(vec3 left, float num) {
     return vec3(left.x / num, left.y / num, left.z / num);
 }// /
 
-inline vec3 operator/=(vec3 left, float num) {
+vec3 operator/=(vec3 left, float num) {
     return vec3(left.x / num, left.y / num, left.z / num);
 }// /
 
 
-inline bool operator < (vec3 left, vec3 right) {
+bool operator < (vec3 left, vec3 right) {
     float dleft = sqrt(left.x * left.x + left.y * left.y + left.z * left.z);
     float dright = sqrt(right.x * right.x + right.y * right.y + right.z * right.z);
 
     return dleft < dright;
 }
 
-inline bool operator==(vec3 left, vec3 right) {
+bool operator==(vec3 left, vec3 right) {
     return left.x == right.x && left.y == right.y && left.z == right.z;
 }
 
-inline double length(vec3 in) {
+double length(vec3 in) {
     return sqrt(in.x * in.x + in.y * in.y + in.z * in.z);
 }
 
-inline vec3 normalize(vec3 vin) {
+vec3 normalize(vec3 vin) {
     double len = length(vin);
     return vec3(vin.x / len, vin.y / len, vin.z / len);
 }
 
-inline vec3 cross(vec3 vin, vec3 vin2) {
+vec3 cross(vec3 vin, vec3 vin2) {
     return vec3( vin.y * vin2.z - vin.z * vin2.y, //x
                  -vin.x * vin2.z + vin.z * vin2.x, //y
                  vin.x * vin2.y - vin.y * vin2.x) //z
            ;
 }
 
-inline double dot(vec3 vin, vec3 vin2) {
+double dot(vec3 vin, vec3 vin2) {
     return (vin.x * vin2.x + vin.y * vin2.y + vin.z * vin2.z);
 }
 
 //return cos(theta) between the two vectors
-inline double getcosa(vec3 vin, vec3 vin2) {
+double getcosa(vec3 vin, vec3 vin2) {
     return dot(vin, vin2) / (length(vin) * length(vin2));
 }
 
-inline double getangle(vec3 vin, vec3 vin2) {
+double getangle(vec3 vin, vec3 vin2) {
     return 180.0 / M_PI * acos(dot(vin, vin2) / (length(vin) * length(vin2)));
 }
 
 
 //project a into b
-inline double sproj(vec3 a, vec3 b) {
+double sproj(vec3 a, vec3 b) {
     return dot(a, b) / length(b);
 }
 
 //project a into b in vector form
-inline vec3 vproj(vec3 a, vec3 b) {
+vec3 vproj(vec3 a, vec3 b) {
     return (dot(a, b) / dot(b, b)) * b;
 }
 
-inline vec3 vrejc(vec3 a, vec3 b) {
+vec3 vrejc(vec3 a, vec3 b) {
     return a - vproj(a, b);
 }
 
@@ -187,97 +187,97 @@ inline vec3 vrejc(vec3 a, vec3 b) {
 
 //======================================================================
 //vec4 op
-inline vec4 operator+(vec4 left, vec4 right) {
+vec4 operator+(vec4 left, vec4 right) {
     return vec4(left.x + right.x, left.y + right.y, left.z + right.z, left.w + right.w);
 }// +
 
-inline vec4 operator+(vec4 left, float num) {
+vec4 operator+(vec4 left, float num) {
     return vec4(left.x + num, left.y + num, left.z + num, left.w + num);
 }// +
 
-inline vec4 operator+(float num, vec4 left) {
+vec4 operator+(float num, vec4 left) {
     return vec4(left.x + num, left.y + num, left.z + num, left.w + num);
 }// +
 
-inline vec4 operator-(vec4 left, vec4 right) {
+vec4 operator-(vec4 left, vec4 right) {
     return vec4(left.x - right.x, left.y - right.y, left.z - right.z, 1);
 }// -
 
-inline vec4 operator-(vec4 left) {
+vec4 operator-(vec4 left) {
     return vec4(-left.x, -left.y, -left.z, -left.w);
 }// -
 
 
-inline vec4 operator-(vec4 left, float num) {
+vec4 operator-(vec4 left, float num) {
     return vec4(left.x - num, left.y - num, left.z - num, left.w);
 }// -
 
-inline vec4 operator-(float num, vec4 left) {
+vec4 operator-(float num, vec4 left) {
     return vec4(left.x - num, left.y - num, left.z - num, left.w);
 }// +
 
-inline vec4 operator*(double scalar, vec4 v) {
+vec4 operator*(double scalar, vec4 v) {
     return vec4(scalar * v.x, scalar * v.y, scalar * v.z, v.w);
 }//*
 
-inline vec4 operator*(vec4 v, double scalar) {
+vec4 operator*(vec4 v, double scalar) {
     return vec4(scalar * v.x, scalar * v.y, scalar * v.z, v.w);
 }//*
 
-inline vec4 operator/(vec4 left, float num) {
+vec4 operator/(vec4 left, float num) {
     return vec4(left.x / num, left.y / num, left.z / num, left.w / num);
 }// /
 
-inline vec4 operator/(float num, vec4 left) {
+vec4 operator/(float num, vec4 left) {
     return vec4(num / left.x, num / left.y, num / left.z, num / left.w);
 }// /
 
-inline vec4 operator/(vec4 left, vec4 right) {
+vec4 operator/(vec4 left, vec4 right) {
     return vec4(left.x / right.x, left.y / right.y, left.z / right.z, left.w / right.w);
 }// /
 
-inline double length(vec4 in) {
+double length(vec4 in) {
     return sqrt(in.x * in.x + in.y * in.y + in.z * in.z);
 }
 
-inline vec4 normalize(vec4 vin) {
+vec4 normalize(vec4 vin) {
     double len = length(vin);
     return vec4(vin.x / len, vin.y / len, vin.z / len, vin.w);
 }
 
-inline vec4 cross(vec4 vin, vec4 vin2) {
+vec4 cross(vec4 vin, vec4 vin2) {
     return vec4( vin.y * vin2.z - vin.z * vin2.y, //x
                  -vin.x * vin2.z + vin.z * vin2.x, //y
                  vin.x * vin2.y - vin.y * vin2.x, //z
                  1 );                         //w
 }
 
-inline double dot(vec4 vin, vec4 vin2) {
+double dot(vec4 vin, vec4 vin2) {
     return (vin.x * vin2.x + vin.y * vin2.y + vin.z * vin2.z);
 }
 
 //return cos(theta) between the two vectors
-inline double getcosa(vec4 vin, vec4 vin2) {
+double getcosa(vec4 vin, vec4 vin2) {
     return dot(vin, vin2) / (length(vin) * length(vin2));
 }
 
-inline double getangle(vec4 vin, vec4 vin2) {
+double getangle(vec4 vin, vec4 vin2) {
     return 180.0 / M_PI * acos(dot(vin, vin2) / (length(vin) * length(vin2)));
 }
 
 
 //project a into b
-inline double sproj(vec4 a, vec4 b) {
+double sproj(vec4 a, vec4 b) {
     return dot(a, b) / length(b);
 }
 
 //project a into b in vector form
-inline vec4 vproj(vec4 a, vec4 b) {
+vec4 vproj(vec4 a, vec4 b) {
     return (dot(a, b) / dot(b, b)) * b;
 }
 
 
-inline vec4 vrejc(vec4 a, vec4 b) {
+vec4 vrejc(vec4 a, vec4 b) {
     return a - vproj(a, b);
 }
 
@@ -484,7 +484,7 @@ vec4& mat4x4::operator[] (const int index) {
     }
 }
 
-inline mat4x4::operator const float* () {
+mat4x4::operator const float* () {
     return &this[0][0][0];
 }
 
@@ -494,36 +494,36 @@ inline mat4x4::operator const float* () {
 //operators for mat2x2
 
 //div
-inline mat2x2 operator/ (const mat2x2 matrix_in, float divisor) {
+mat2x2 operator/ (const mat2x2 matrix_in, float divisor) {
     return mat2x2(matrix_in.x / divisor, matrix_in.y / divisor);
 }
 
-inline mat2x2 transpose(mat2x2 matrix_in) {
+mat2x2 transpose(mat2x2 matrix_in) {
     return mat2x2(
                matrix_in.x.x, matrix_in.y.x,
                matrix_in.x.y, matrix_in.y.y
            );
 }
 
-inline float determinate(mat2x2 matrix_in) {
+float determinate(mat2x2 matrix_in) {
     return (matrix_in.x.x * matrix_in.y.y - matrix_in.x.y * matrix_in.y.x);
 }
 
 
-inline mat2x2 inverse(mat2x2 m_in) {
+mat2x2 inverse(mat2x2 m_in) {
     return mat2x2( m_in.y.y, -m_in.x.y,
                    -m_in.y.x,  m_in.x.x) / determinate(m_in);
 }
 
-inline vec2 operator * (const mat2x2 m, const vec2 vin) {
+vec2 operator * (const mat2x2 m, const vec2 vin) {
     return vec2(m.x.x * vin.x + m.x.y * vin.y, m.y.x * vin.x + m.y.y * vin.y);
 }
 
-inline vec2 operator * (const vec2 vin, const mat2x2 m) {
+vec2 operator * (const vec2 vin, const mat2x2 m) {
     return vec2(m.x.x * vin.x + m.x.y * vin.y, m.y.x * vin.x + m.y.y * vin.y);
 }
 
-inline mat2x2 operator * (const mat2x2 m, const mat2x2 m2) {
+mat2x2 operator * (const mat2x2 m, const mat2x2 m2) {
     return mat2x2(
                m.x.x * m2.x.x + m.x.y * m2.y.x,
                m.x.x * m2.x.y + m.x.y * m2.y.y,
@@ -533,18 +533,18 @@ inline mat2x2 operator * (const mat2x2 m, const mat2x2 m2) {
 }
 
 //mat 3x3
-inline mat3x3 operator/ (const mat3x3 mat, float divisor) {
+mat3x3 operator/ (const mat3x3 mat, float divisor) {
     return mat3x3(mat.x / divisor, mat.y / divisor, mat.z / divisor);
 }
 
-inline mat3x3 transpose(mat3x3 mat) {
+mat3x3 transpose(mat3x3 mat) {
     return mat3x3(
                mat.x.x, mat.y.x, mat.z.x,
                mat.x.y, mat.y.y, mat.z.y,
                mat.x.z, mat.y.z, mat.z.z);
 }
 
-inline float determinate(mat3x3 mat) {
+float determinate(mat3x3 mat) {
     return ( mat.x.x * mat.y.y * mat.z.z
              - mat.x.x * mat.y.z * mat.z.y
 
@@ -556,7 +556,7 @@ inline float determinate(mat3x3 mat) {
 }
 
 
-inline mat3x3 inverse(mat3x3 mat) {
+mat3x3 inverse(mat3x3 mat) {
     return mat3x3( mat.y.y * mat.z.z - mat.y.z * mat.z.y, //xx
                    -mat.x.y * mat.z.z + mat.x.z * mat.z.y, //xy
                    mat.x.y * mat.y.z - mat.x.z * mat.y.y, //xz
@@ -570,19 +570,19 @@ inline mat3x3 inverse(mat3x3 mat) {
 }
 
 
-inline vec3 operator * (const mat3x3 m, const vec3 vin) {
+vec3 operator * (const mat3x3 m, const vec3 vin) {
     return vec3(m.x.x * vin.x + m.x.y * vin.y + m.x.z * vin.z,
                 m.y.x * vin.x + m.y.y * vin.y + m.y.z * vin.z,
                 m.z.x * vin.x + m.z.y * vin.y + m.z.z * vin.z);
 }
 
-inline vec3 operator * (const vec3 vin, const mat3x3 m) {
+vec3 operator * (const vec3 vin, const mat3x3 m) {
     return vec3(m.x.x * vin.x + m.x.y * vin.y + m.x.z * vin.z,
                 m.y.x * vin.x + m.y.y * vin.y + m.y.z * vin.z,
                 m.z.x * vin.x + m.z.y * vin.y + m.z.z * vin.z);
 }
 
-inline mat3x3 operator * (const mat3x3 m, const mat3x3 m2) {
+mat3x3 operator * (const mat3x3 m, const mat3x3 m2) {
     return mat3x3(
                m.x.x * m2.x.x + m.x.y * m2.y.x + m.x.z * m2.z.x,
                m.x.x * m2.x.y + m.x.y * m2.y.y + m.x.z * m2.z.y,
@@ -600,14 +600,14 @@ inline mat3x3 operator * (const mat3x3 m, const mat3x3 m2) {
 
 
 //mat4 op
-inline mat4x4 transpose(mat4x4 mat) {
+mat4x4 transpose(mat4x4 mat) {
     return mat4x4(mat.x.x, mat.y.x, mat.z.x, mat.w.x,
                   mat.x.y, mat.y.y, mat.z.y, mat.w.y,
                   mat.x.z, mat.y.z, mat.z.z, mat.w.z,
                   mat.x.w, mat.y.w, mat.z.w, mat.w.w);
 }
 
-inline float determinate(mat4x4 mat) {
+float determinate(mat4x4 mat) {
     return (+mat.x.x * mat.y.y * mat.z.z * mat.w.w + mat.x.x * mat.y.z * mat.z.w * mat.w.y + mat.x.x * mat.y.w * mat.z.y * mat.w.z
             + mat.x.y * mat.y.x * mat.z.w * mat.w.z + mat.x.y * mat.y.z * mat.z.x * mat.w.w + mat.x.y * mat.y.w * mat.z.z * mat.w.x
             + mat.x.z * mat.y.x * mat.z.y * mat.w.w + mat.x.z * mat.y.y * mat.z.w * mat.w.x + mat.x.z * mat.y.w * mat.z.x * mat.w.y
@@ -620,7 +620,7 @@ inline float determinate(mat4x4 mat) {
 
 
 //Im sorry, this was the only way,
-inline mat4x4 inverse(mat4x4 mat) {
+mat4x4 inverse(mat4x4 mat) {
     float det = determinate(mat);
 
     return mat4x4(
@@ -659,25 +659,25 @@ inline mat4x4 inverse(mat4x4 mat) {
 }
 
 
-inline mat4x4 operator/ (const mat4x4 mat, float divisor) {
+mat4x4 operator/ (const mat4x4 mat, float divisor) {
     return mat4x4(mat.x / divisor, mat.y / divisor, mat.z / divisor, mat.w / divisor);
 }
 
-inline mat4x4 operator * (const mat4x4 m, const float scalar) {
+mat4x4 operator * (const mat4x4 m, const float scalar) {
     return mat4x4(m.x.x * scalar, m.x.y * scalar, m.x.z * scalar, m.x.w * scalar,
                   m.y.x * scalar, m.y.y * scalar, m.y.z * scalar, m.y.w * scalar,
                   m.z.x * scalar, m.z.y * scalar, m.z.z * scalar, m.z.w * scalar,
                   m.w.x * scalar, m.w.y * scalar, m.w.z * scalar, m.w.w * scalar);
 }
 
-inline mat4x4 operator * (const float scalar, const mat4x4 m) {
+mat4x4 operator * (const float scalar, const mat4x4 m) {
     return mat4x4(m.x.x * scalar, m.x.y * scalar, m.x.z * scalar, m.x.w * scalar,
                   m.y.x * scalar, m.y.y * scalar, m.y.z * scalar, m.y.w * scalar,
                   m.z.x * scalar, m.z.y * scalar, m.z.z * scalar, m.z.w * scalar,
                   m.w.x * scalar, m.w.y * scalar, m.w.z * scalar, m.w.w * scalar);
 }
 
-inline vec4 operator * (const mat4x4 m, const vec4 vin) {
+vec4 operator * (const mat4x4 m, const vec4 vin) {
     return vec4(m.x.x * vin.x + m.x.y * vin.y + m.x.z * vin.z + m.x.w * vin.w,
                 m.y.x * vin.x + m.y.y * vin.y + m.y.z * vin.z + m.y.w * vin.w,
                 m.z.x * vin.x + m.z.y * vin.y + m.z.z * vin.z + m.z.w * vin.w,
@@ -686,14 +686,14 @@ inline vec4 operator * (const mat4x4 m, const vec4 vin) {
 
 
 //this is both ethically  & mathematically wrong...does the same as above
-inline vec4 operator * (const vec4 vin, const mat4x4 m) {
+vec4 operator * (const vec4 vin, const mat4x4 m) {
     return vec4(m.x.x * vin.x + m.x.y * vin.y + m.x.z * vin.z + m.x.w * vin.w,
                 m.y.x * vin.x + m.y.y * vin.y + m.y.z * vin.z + m.y.w * vin.w,
                 m.z.x * vin.x + m.z.y * vin.y + m.z.z * vin.z + m.z.w * vin.w,
                 m.w.x * vin.x + m.w.y * vin.y + m.w.z * vin.z + m.w.w * vin.w);
 }
 
-inline mat4x4 operator * (const mat4x4 m, const mat4x4 m2) {
+mat4x4 operator * (const mat4x4 m, const mat4x4 m2) {
     return mat4x4(m.x.x * m2.x.x + m.x.y * m2.y.x + m.x.z * m2.z.x + m.x.w * m2.w.x,
                   m.x.x * m2.x.y + m.x.y * m2.y.y + m.x.z * m2.z.y + m.x.w * m2.w.y,
                   m.x.x * m2.x.z + m.x.y * m2.y.z + m.x.z * m2.z.z + m.x.w * m2.w.z,
@@ -716,11 +716,9 @@ inline mat4x4 operator * (const mat4x4 m, const mat4x4 m2) {
 }
 
 
-inline mat4x4 operator + (const mat4x4 m, const mat4x4 m2) {
+mat4x4 operator + (const mat4x4 m, const mat4x4 m2) {
     return mat4x4(m.x + m2.x, m.y + m2.y, m.z + m2.z, vec4(0, 0, 0, 1));
 }
-
-
 
 //outputs
 std::ostream& operator << (std::ostream& os, const mat2x2 m) {

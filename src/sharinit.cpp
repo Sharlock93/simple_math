@@ -8,9 +8,9 @@
 using namespace std;
 
 #ifndef __glew_h__
-#include <GL\glew.h>
+#include "../../GL/glew.h"
 #endif
-#include <GLFW\glfw3.h>
+#include "../../GLFW/glfw3.h"
 
 //====================================================================================
 //read a file into a buffer and return it for making a shader

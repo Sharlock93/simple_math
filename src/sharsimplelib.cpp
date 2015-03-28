@@ -1,6 +1,7 @@
 #include "../headers/sharsimplelib.h"
-#include <GL\glew.h>
-#include <GLFW\glfw3.h>
+#include "../../GL/glew.h"
+#include "../../GLFW/glfw3.h"
+
 
 void shWritePixel(GLfloat x, GLfloat y) {
     v_buff_x[V_BUFF_INDEX] = (2*x)/windoWidth - 1;

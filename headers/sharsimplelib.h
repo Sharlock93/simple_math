@@ -1,8 +1,9 @@
 #ifndef _SHAR_SIMP_LIB_
 #define _SHAR_SIMP_LIB_
 
-#include <GL\glew.h>
-#include <GLFW\glfw3.h>
+#include "../../GL/glew.h"
+#include "../../GLFW/glfw3.h"
+
 
 const GLint SIZE_OF_VIRTUAL_BUFF = 1000; // 512 for x and 512 for y
 GLfloat v_buff_x[SIZE_OF_VIRTUAL_BUFF];
