@@ -74,6 +74,11 @@ vec2 operator-(vec2 vector) {
   return vec2(-vector.x, -vector.y);
 }
 
+vec2 operator-(vec2 left, vec2 right) {
+    return vec2(left.x - right.x, left.y - right.y);
+}
+
+
 //division
 vec2 operator/(vec2 left, vec2 right) {
     return vec2(left.x / right.x, left.y / right.y);

@@ -31,6 +31,7 @@ vec2 operator+(vec2 left, vec2 right);
 vec2 operator+(vec2 left, float num);
 vec2 operator+(float num, vec2 left);
 vec2 operator-(vec2 vector);
+vec2 operator-(vec2 left, vec2 right);
 vec2 operator/(vec2 left, vec2 right);
 vec2 operator/(vec2 left, float num);
 vec2 operator/(float num, vec2 left);
