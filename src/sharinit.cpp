@@ -1,3 +1,4 @@
+#define GLEW_STATIC
 #include "../headers/sharinit.h"
 
 #include <stdio.h>

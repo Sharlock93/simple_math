@@ -1,3 +1,4 @@
+#define GLEW_STATIC
 #ifndef _SHA_DER_
 #define _SHA_DER_
 
