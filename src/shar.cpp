@@ -213,7 +213,7 @@ vec4 operator-(vec4 left, vec4 right) {
 }// -
 
 vec4 operator-(vec4 left) {
-    return vec4(-left.x, -left.y, -left.z, -left.w);
+    return vec4(-left.x, -left.y, -left.z, left.w);
 }// -
 
 
