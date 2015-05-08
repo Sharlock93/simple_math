@@ -209,7 +209,7 @@ vec4 operator+(float num, vec4 left) {
 }// +
 
 vec4 operator-(vec4 left, vec4 right) {
-    return vec4(left.x - right.x, left.y - right.y, left.z - right.z, 1);
+    return vec4(left.x - right.x, left.y - right.y, left.z - right.z, left.w - right.w);
 }// -
 
 vec4 operator-(vec4 left) {
