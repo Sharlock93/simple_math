@@ -6,6 +6,10 @@
 //translate*rotate*scale <<---quiet fucked up
 //v' = P*V*M*v << first model matrix, then view, then projections
 
+// FUCKING MATRIX ORDER MATTERS.... mat4 v1, v2
+//v1*v2 =!= v2*v1, even in my own fucking code...
+//i wrote this code...math still fucks with you.
+
 #ifndef _SHAR_
 #define _SHAR_
 
