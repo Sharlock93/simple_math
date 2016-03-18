@@ -5,6 +5,7 @@
 // #include "../headers/shar.h"
 #include <random>
 #include <math.h>
+#include <iostream>
 
 //introduce some randomness
 std::random_device randev;
@@ -264,9 +265,10 @@ mat4 shalookat(vec4 eye, vec4 at, vec4 up) {
 
     mat4 result(u, v, n, vec4(0, 0, 0, 1));
 
-    // cout << result << endl;m
+    // std::cout << result << std::endl;
+    // std::cout <<  shatranslate(-eye) << std::endl;
 
-    return result * shatranslate(-eye);
+    return  result*shatranslate(-eye) ;
 }
 
 mat4 shafrustum(float lleft, float lright, float top, float bottom, float near, float far) {

@@ -25,7 +25,7 @@ char* shareadfile(const char *filename) {
     } else {
         fseek(tempfile, 0, SEEK_END);
         long size_of_file = ftell(tempfile);
-        cout << size_of_file << endl;
+        // cout << size_of_file << endl;
         char *ret = new char[size_of_file+1];
         rewind(tempfile);
         fread(ret, 1, size_of_file, tempfile);
@@ -127,8 +127,8 @@ GLFWwindow* shainitwindow(int height, int width, char *title) {
         cout << "glfwInit() error" << endl;
     }
 
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 5);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
     glfwWindowHint(GLFW_RESIZABLE, GL_TRUE);

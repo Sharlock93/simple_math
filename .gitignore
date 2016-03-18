@@ -4,3 +4,4 @@ multiplication
 transpose
 *.lib
 *.o
+build-win

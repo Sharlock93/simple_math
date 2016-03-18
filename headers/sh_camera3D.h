@@ -14,6 +14,7 @@ public:
     
     void move_forward(float x);
     void move_up(float x);
+    void move_left(float x);
 
     void move(vec4 v);
 

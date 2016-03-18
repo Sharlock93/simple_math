@@ -2,6 +2,9 @@
 #include <cmath>
 #include <iomanip>
 #include <ostream>
+#ifndef M_PI
+#define M_PI 3.14159265359
+#endif
 //=================================================
 //vector types
 
@@ -251,7 +254,7 @@ double length(vec4 in) {
 
 vec4 normalize(vec4 vin) {
     double len = length(vin);
-    return vec4(vin.x / len, vin.y / len, vin.z / len, vin.w);
+    return vec4(vin.x / len, vin.y / len, vin.z / len, 1.0);
 }
 
 vec4 cross(vec4 vin, vec4 vin2) {

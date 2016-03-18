@@ -17,7 +17,7 @@
 #include <ostream>
 #include <iomanip>
 #include <cmath>
-const float torad = M_PI / 180.0;
+const float torad = 3.14159265359 / 180.0;
 
 //=================================================
 //vector types
