@@ -1,6 +1,6 @@
 #ifndef DIAMOND_SQUARE
 #define DIAMOND_SQUARE
-
+// #define DEBUG
 //Note(sharo): 
 
 inline int convert_to_index(int row, int col, int stride);
