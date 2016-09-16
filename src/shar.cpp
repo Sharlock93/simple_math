@@ -16,8 +16,8 @@ vec2::vec2(float xin, float yin) {
 
 float& vec2::operator[] (const unsigned int num) {
     switch (num) {
-    case 0: return x;
-    case 1: return y;
+        case 0: return x;
+        case 1: return y;
     }
 }//end vec2 op []
 
@@ -94,6 +94,34 @@ vec2 operator/(vec2 left, float num) {
 vec2 operator/(float num, vec2 left) {
     return vec2(num / left.x, num / left.y);
 }// /
+
+double dot(vec2 a, vec2 b) {
+   return a.x*b.x + a.y*b.y; 
+}
+
+double length(vec2 in) {
+    return sqrt(in.x * in.x + in.y * in.y);
+}
+
+vec2 normalize(vec2 vin) {
+    float len = length(vin);
+    return vec2(vin.x / len, vin.y / len);
+}
+
+//project a into b
+double sproj(vec2 a, vec2 b) {
+    return dot(a, b) / length(b);
+}
+
+//project a into b in vector form
+vec2 vproj(vec2 a, vec2 b) {
+    return (dot(a, b) / dot(b, b)) * b;
+}
+
+vec2 vrejc(vec2 a, vec2 b) {
+    return a - vproj(a, b);
+}
+
 //======================================================================
 
 //======================================================================

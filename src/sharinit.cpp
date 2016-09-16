@@ -1,4 +1,4 @@
-#define GLEW_STATIC
+// #define GLEW_STATIC
 #include "../headers/sharinit.h"
 
 #include <stdio.h>
@@ -7,11 +7,6 @@
 #include <iostream>
 
 using namespace std;
-
-#ifndef __glew_h__
-#include "../../GL/glew.h"
-#endif
-#include "../../GLFW/glfw3.h"
 
 //====================================================================================
 //read a file into a buffer and return it for making a shader
@@ -34,8 +29,6 @@ char* shareadfile(const char *filename) {
 
         return ret;
     }
-
-    return NULL;
 }
 //====================================================================================
 

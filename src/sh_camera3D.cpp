@@ -1,5 +1,5 @@
-#include "..\headers\sharfun.h"
-#include "..\headers\sh_camera3D.h"
+#include <sharfunc.h>
+#include <sh_camera3D.h>
 
 #include <iostream>
 
@@ -47,16 +47,15 @@ void sh_camera3D::move_left(float x) {
 //for this camera class we want to rotate around the UP in the world, not the local UP
 
 void sh_camera3D::increase_yaw(float add_yaw) {
-    float diff = _yaw - add_yaw;
+    float diff = add_yaw -  _yaw;
     _cam = _cam*shatranslate(_pos)*sharotatey(diff)*shatranslate(-_pos);
 
     _yaw = add_yaw;
 }
 
 void sh_camera3D::increase_pitch(float add_pitch) {
-    float diff = _pitch - add_pitch;
+    float diff = add_pitch - _pitch;
     _cam = sharotatex(diff)*_cam;
-
     _pitch = add_pitch;
 }
 

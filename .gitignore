@@ -5,3 +5,4 @@ transpose
 *.lib
 *.o
 build-win
+exlib

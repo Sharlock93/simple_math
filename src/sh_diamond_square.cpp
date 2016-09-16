@@ -1,9 +1,14 @@
 #include "../headers/sh_diamond_square.h"
 #include <random>
+#include <time.h>
 
 #ifdef DEBUG
 #include <iostream>
 #endif
+
+
+std::uniform_real_distribution<float> dist;
+std::mt19937 mt;
 
 //Note(sharo): global becasause used by everyone.
 //Todo(sharo): possibly remove this from global and make it a param?
@@ -56,13 +61,11 @@ float get_neigh_average(float *points, int row, int col,int col_stride, int stri
     float ave = (points[t]+
                  points[l]+
                  points[b]+
-                 points[r])/4.0;
+                 points[r])/4.0f;
     return ave;
 }
 
-std::random_device rd;
-std::mt19937 mt(rd());
-std::uniform_real_distribution<float> dist;
+
 
 void square_step(float *points, int x, int y, int col_stride, int stride) { 
     //Note(sharo): x, y, are the row and column of the middle point
@@ -120,18 +123,27 @@ void diamond_step(float* points, int x, int y, int col_stride, int stride) {
     std::cout << "rngm: " << rngm << std::endl;
 #endif
 
-    points[middle_index] = (c1 + c2 + c3 + c4)/4.0 + rngm; 
+    points[middle_index] = (float)( (c1 + c2 + c3 + c4)/4.0 + rngm ); 
 }
 
 //Todo(sharo): maybe add a seed variable for the random generator?
-void diamond_square(float *points, float detail, float rough_const, float max_height) {
+void diamond_square(float *points, int detail, float rough_const, float max_height) {
+    //Note(sharo): this fucking this is bad, as of today, 2016-3-19, GCC whatever fuck version
+    //doesn't seed correctly using random_device, maybe I'm a dumb fuck and don't know how it 
+    //works but this shit pissed me off, so I just seed using a time(0), because that
+    //fucking thing actually produces a new value each time its ran
+   
+
+    mt = std::mt19937( (unsigned int)time(0));
+    dist = std::uniform_real_distribution<float>(-max_height, max_height);
+    
  
     //Note(sharo): this just remaking the random device
-    dist = decltype(dist)(-max_height, max_height); 
+    // dist = decltype(dist)(-max_height, max_height); 
    
     //Note(sharo): amount to decrease the range by after each iteration
     //also reusing the same variable 
-    rough_const = pow(2, -rough_const);
+    rough_const = (float)( pow(2, -rough_const) );
 
     //Note(sharo); seed the corners randomly
     points[0] = dist(mt);  
@@ -139,7 +151,7 @@ void diamond_square(float *points, float detail, float rough_const, float max_he
     points[convert_to_index(detail, 0, detail+1)] = dist(mt); 
     points[convert_to_index(detail, detail, detail+1)] =  dist(mt); 
  
-    int col_stride = detail/2;
+    int col_stride = (int)( detail/2 );
     //Note(sharo): repeat until the length is bigger than 1
     for(int i = detail; i > 1; i /= 2) { 
         for(int j = 0; j < detail; j += i) {  
@@ -158,6 +170,6 @@ void diamond_square(float *points, float detail, float rough_const, float max_he
         //Note(sharo); decrease range of rough 
         max_height *= rough_const;
         dist = decltype(dist)(-max_height, max_height); 
-        col_stride = ceil(col_stride/2);
+        col_stride = (int)ceil(col_stride/2);
     }
 }

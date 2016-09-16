@@ -1,13 +1,11 @@
-#include "..\..\GL\glew.h"
-#include "..\..\GLFW\glfw3.h"
-// #include <Shar\sharinclude.h>
-
-#include "shar.h"
+#include <GL\glew.h>
+#include <GLFW\glfw3.h>
+#include <shar.h>
 
 #ifndef SH_SHAPES
 #define SH_SHAPES
 
-class sh_rect {
+class SH_API sh_rect {
 public:
     sh_rect();
     sh_rect(float x, float y, float rect_height, float rect_width,
@@ -35,9 +33,8 @@ public:
     void set_center(float x, float y);
     void set_center(vec2 center);
     
-    void render();
+    void render(int vpos_attibute_location, int color_attribute_locaiton, int model_transformation_attribute);
 
-private:
     GLuint _vbo;
     vec2 _position;
     vec2 _center;
@@ -46,7 +43,19 @@ private:
     float _height;
     float _width;
     
+    union {
+        struct {
+            float _left;
+            float _right;
+            float _top;
+            float _bottom;
+        };
+        
+        vec4 walls;
+    };
     vec2 data[6];
+
+    mat4 _transformation;
 
     //possible other thingy to do.
     // bool dirty;

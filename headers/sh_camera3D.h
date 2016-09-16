@@ -1,9 +1,9 @@
 #ifndef SH_CAMERA3D_H
 #define SH_CAMERA3D_H
 
-#include "shar.h"
+#include <shar.h>
 
-class sh_camera3D {
+class SH_API sh_camera3D {
 
 public:
     sh_camera3D();
@@ -23,7 +23,6 @@ public:
 
     void increase_yaw(float add_yaw);
     void increase_pitch(float add_yaw);
-private:
     mat4 _cam;
     vec4 _pos;
 
